@@ -11,7 +11,7 @@ export interface TooltipData {
   y?: number;
 }
 
-let tooltip: Selection<HTMLDivElement, unknown, HTMLElement, any> | null = null;
+let tooltip: Selection<HTMLDivElement, unknown, null | HTMLElement, undefined> | null = null;
 
 export function initTooltip(container: string | HTMLElement): void {
   const containerElement = typeof container === 'string' 

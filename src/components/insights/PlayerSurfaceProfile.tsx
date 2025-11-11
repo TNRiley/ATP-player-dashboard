@@ -10,7 +10,7 @@ import { scaleBand, scaleLinear, scaleOrdinal } from 'd3-scale';
 import { formatPercent } from '../../utils/d3/formatters';
 import { showTooltip, hideTooltip, moveTooltip } from '../../utils/d3/tooltip';
 import { useStore } from '../../state/store';
-import type { Match, Tournament, Surface, Series } from '../../types';
+import type { Match, Tournament, Surface } from '../../types';
 
 interface Props {
   matches: Match[];
@@ -101,7 +101,7 @@ export function PlayerSurfaceProfile({ matches, tournaments, players }: Props) {
     const groupWidth = xScale.bandwidth() / playerStats.length;
     
     playerStats.forEach((playerData, playerIndex) => {
-      surfaces.forEach((surface, surfaceIndex) => {
+      surfaces.forEach((surface) => {
         const stat = playerData.surfaceStats.find(s => s.surface === surface);
         const winRate = stat?.winRate || 0;
         

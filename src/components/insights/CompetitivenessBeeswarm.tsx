@@ -4,7 +4,7 @@
  */
 
 import { useEffect, useRef } from 'react';
-import { select, Selection } from 'd3-selection';
+import { select } from 'd3-selection';
 import { axisBottom, axisLeft } from 'd3-axis';
 import { createLinearScale, createBandScale, roundColors } from '../../utils/d3/scales';
 import { beeswarmLayout } from '../../utils/d3/layout';
