@@ -1,0 +1,54 @@
+# Name of your workflow
+name: Deploy Vite App to GitHub Pages
+
+# Run this workflow on every push to the 'main' branch
+on:
+  push:
+    branches: ["main"]
+
+# Set the permissions for the GitHub token
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Define the jobs to run
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Get your code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # 3. Install all dependencies (npm ci is faster and safer)
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Run your data scripts! This is the key fix.
+      - name: Generate data
+        run: npm run get-data
+
+      # 5. Build your app
+      - name: Build app
+        run: npm run build
+
+      # 6. Prepare the build for deployment
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      # 7. Upload the 'dist' folder
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'dist'
+
+      # 8. Deploy to GitHub Pages
+      - name: Deploy
+        uses: actions/deploy-pages@v4

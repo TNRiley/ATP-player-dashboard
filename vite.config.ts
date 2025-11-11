@@ -2,13 +2,9 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: "./", 
+  // This is the correct base path for GitHub Actions
+  base: "/atp-player-dashboard/", 
   plugins: [react()],
-  
-  build: {
-    outDir: "docs"
-  },
-  
   server: {
     port: 3000,
     open: true
