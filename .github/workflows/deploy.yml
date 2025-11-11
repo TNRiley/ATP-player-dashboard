@@ -39,6 +39,10 @@ jobs:
       - name: Build app
         run: npm run build
 
+      #5.2 List contents of dist folder
+      - name: List build output
+        run: ls -R dist
+
       # 6. Prepare the build for deployment
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
